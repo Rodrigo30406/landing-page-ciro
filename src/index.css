@@ -4,7 +4,7 @@
 * { box-sizing:border-box; }
 html,body { margin:0; overflow-x:hidden; }
 body { font-family:'Manrope',sans-serif; background:var(--bg); color:var(--ink); }
-main { width:min(980px,92vw); margin:0 auto; }
+main { width:min(1600px,98vw); margin:0 auto; }
 section { position:relative; isolation:isolate; }
 .reveal {
   opacity: 0;
@@ -24,8 +24,36 @@ section { position:relative; isolation:isolate; }
 
 h1,h2,h3 { font-family:'Sora',sans-serif; line-height:1.08; letter-spacing:-.02em; }
 .hero-stream { padding:6.3rem clamp(1.1rem,3vw,2.7rem) 4.6rem; border-bottom:1px solid var(--line); }
+.hero-stream {
+  max-width: 1560px;
+  margin: 0 auto;
+}
+.hero-split {
+  display: grid;
+  grid-template-columns: minmax(560px, 56%) minmax(560px, 44%);
+  gap: clamp(1rem, 1.8vw, 2rem);
+  align-items: center;
+}
+.hero-copy {
+  min-width: 0;
+  max-width: none;
+  padding-right: 0;
+}
+.hero-video-wrap {
+  justify-self: end;
+  align-self: center;
+  max-width: 640px;
+  width: 100%;
+  border: 1px solid rgba(35, 213, 213, 0.45);
+  border-radius: 24px;
+  box-shadow: 0 0 34px rgba(35, 213, 213, 0.22);
+  padding: 0.5rem;
+  background: #060d1a;
+  position: relative;
+  top: auto;
+}
 .kicker { margin:0 0 1rem; text-transform:uppercase; font-size:.76rem; font-weight:700; letter-spacing:.13em; color:var(--cyan); }
-h1 { margin:0; max-width:12ch; font-size:clamp(2.2rem,6vw,5rem); }
+h1 { margin:0; max-width:10ch; font-size:clamp(2.2rem,4.6vw,5rem); line-height:1.03; }
 h1 span { color:var(--lime); }
 .lead { margin-top:1.2rem; max-width:58ch; line-height:1.6; color:var(--muted); font-size:clamp(1rem,1.6vw,1.2rem); }
 
@@ -49,9 +77,24 @@ h1 span { color:var(--lime); }
 .stat-card small { display:block; margin-top:.35rem; color:#76f7c4; font-size:.78rem; }
 
 .clients-strip,.narrative,.metrics-zone,.video-section,.method-stream,.deliverables-zone,.media-block,.chart-zone,.proof-stream,.final-cta { padding:5.2rem clamp(1.1rem,3vw,2.7rem); border-bottom:1px solid var(--line); }
+.clients-strip,.narrative,.metrics-zone,.method-stream,.deliverables-zone,.media-block,.chart-zone,.proof-stream,.final-cta {
+  max-width: 980px;
+  margin: 0 auto;
+}
 .clients-avatars { margin-top:1.2rem; display:flex; flex-wrap:wrap; gap:.5rem; }
 .clients-avatars img { width:62px; height:62px; border-radius:999px; object-fit:cover; border:2px solid rgba(140,179,239,.6); box-shadow:0 8px 20px rgba(0,0,0,.35); }
 .narrative p { margin:0; max-width:70ch; font-size:clamp(1.12rem,2.1vw,1.55rem); color:#dce7fb; }
+.narrative .stats-strip.in-metrics {
+  margin-top: 1.4rem;
+}
+.narrative .stats-strip.in-metrics .stat-card {
+  background: linear-gradient(160deg, rgba(9, 24, 46, 0.96), rgba(10, 28, 50, 0.72));
+  border-color: rgba(102, 157, 255, 0.45);
+  box-shadow: 0 14px 26px rgba(0, 20, 40, 0.35);
+}
+.narrative .stats-strip.in-metrics strong {
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+}
 h2 { margin:0; font-size:clamp(1.5rem,3.8vw,2.8rem); }
 .section-label { margin:0; font-size:.76rem; letter-spacing:.12em; text-transform:uppercase; color:var(--rose); font-weight:700; }
 
@@ -145,7 +188,13 @@ h2 { margin:0; font-size:clamp(1.5rem,3.8vw,2.8rem); }
 .final-cta { border-bottom:0; }
 .final-cta::before { content:none; }
 .final-cta h2 { max-width:14ch; }
-.final-cta p { margin-bottom: 0.65rem; }
+.final-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.final-cta p { margin: 0; }
 
 /* Add consistent breathing room between body text and standalone CTA buttons */
 .media-copy .btn,
@@ -154,7 +203,7 @@ h2 { margin:0; font-size:clamp(1.5rem,3.8vw,2.8rem); }
   margin-top: 0.8rem;
 }
 .final-cta .btn {
-  margin-top: 0.45rem;
+  margin-top: 0.2rem;
 }
 
 .legal-footer { margin-top:2.4rem; padding:2.4rem 0 2.9rem; background:linear-gradient(180deg, #071126, #050d1d 62%, #040a17); border-top:1px solid rgba(126,140,168,.2); }
@@ -168,5 +217,7 @@ h2 { margin:0; font-size:clamp(1.5rem,3.8vw,2.8rem); }
 }
 
 @media (max-width:900px) {
+  .hero-split { grid-template-columns: 1fr; }
+  .hero-video-wrap { max-width: 720px; margin: 0 auto; position: static; }
   .video-section,.chart-zone,.reel-grid,.stats-strip { grid-template-columns:1fr; }
 }
