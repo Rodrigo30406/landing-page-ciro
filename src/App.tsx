@@ -238,11 +238,12 @@ function App() {
                 El sistema para agroexportadoras que quieren <span className="hero-highlight">captar clientes</span> premium en destino y posicionarse como una <span className="hero-highlight">autoridad global</span>
               </h1>
               <p className="lead">Mira este video para descubrir cómo activar un flujo predecible de intenciones reales de compra en destino, asegurar la colocación de tu campaña y escalar tus márgenes.</p>
-              <div className="cta-row"><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">AGENDA UNA SESION GRATUITA + Bono Especial</a></div>
+              <div className="cta-row hero-cta-desktop"><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">AGENDA UNA SESION GRATUITA + Bono Especial</a></div>
             </div>
             <div className="hero-video-wrap">
               <iframe className="video-frame" src="https://www.youtube.com/embed/9No-FiEInLA" title="Video de presentacion GAAP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen />
             </div>
+            <div className="cta-row hero-cta-mobile"><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">AGENDA UNA SESION GRATUITA + Bono Especial</a></div>
           </div>
         </section>
 
@@ -281,7 +282,7 @@ function App() {
         <section id="contacto" className="final-cta reveal"><h2>AGENDA UNA SESION GRATUITA + Bono Especial</h2><p>Activa el Protocolo G.A.A.P. y escala tu posicionamiento global con un flujo predecible de intenciones reales de compra.</p><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">AGENDA AHORA</a></section>
       </main>
 
-      <footer className="legal-footer"><div className="legal-wrap"><div className="legal-logo">AVISO LEGAL Y DESCARGO DE RESPONSABILIDAD</div><p>La tarifa de consultoria del Protocolo G.A.A.P. corresponde exclusivamente al diseño estrategico, produccion y optimizacion del sistema. Toda inversion en pauta publicitaria (Ads) es independiente y sera cubierta por el presupuesto del cliente.</p><p>Las sesiones mensuales de registro audiovisual cubren traslados unicamente dentro de Lima Metropolitana. Producciones fuera de este limite requieren cobertura independiente de costos logisticos y viaticos.</p><p>Los resultados comerciales mostrados representan hitos logrados bajo ejecucion rigurosa y no constituyen promesa o garantia de facturacion o cierre de contratos fijos. El exito depende de multiples variables operativas, logisticas y de mercado ajenas a nuestro control.</p></div></footer>
+      <footer className="legal-footer"><div className="legal-wrap"><div className="legal-logo">AVISO LEGAL Y DESCARGO DE RESPONSABILIDAD</div><p>La tarifa de consultoria del Protocolo G.A.A.P. corresponde exclusivamente al diseño estrategico, produccion y optimizacion del sistema. Toda inversion en pauta publicitaria (Ads) es independiente y sera cubierta por el presupuesto del cliente. Las sesiones mensuales de registro audiovisual cubren traslados unicamente dentro de Lima Metropolitana. Producciones fuera de este limite requieren cobertura independiente de costos logisticos y viaticos. Los resultados comerciales mostrados representan hitos logrados bajo ejecucion rigurosa y no constituyen promesa o garantia de facturacion o cierre de contratos fijos. El exito depende de multiples variables operativas, logisticas y de mercado ajenas a nuestro control.</p></div></footer>
     </>
   )
 }
