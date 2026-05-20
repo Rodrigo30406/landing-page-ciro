@@ -1,4 +1,5 @@
 ﻿import { useEffect, useMemo, useRef, useState } from 'react'
+import { ShieldCheck, Radar, Cog } from 'lucide-react'
 import './index.css'
 
 type Metric = {
@@ -117,19 +118,22 @@ const pillars = [
     title: 'Blindaje de Reputacion Global',
     text: 'Elevamos tu narrativa corporativa en Instagram, Facebook, LinkedIn y Email para que tus clientes actuales y potenciales validen tu trazabilidad al instante, eliminando cualquier percepcion de riesgo operativo.',
     tone: 'tone-cyan',
-    icon: E.brain,
+    icon: ShieldCheck,
+    cue: 'Estructura de confianza',
   },
   {
     title: 'Imanes de Atraccion a Gran Escala',
     text: 'Diseñamos piezas publicitarias de alto impacto bajo el Protocolo G.A.A.P. Contamos con plantillas de guiones comprobadas para cada producto y rubro agroexportador, listas para capturar la atencion de tu cliente ideal y despertar un interes inmediato en tu oferta.',
     tone: 'tone-lime',
-    icon: E.radar,
+    icon: Radar,
+    cue: 'Protocolo de captacion',
   },
   {
     title: 'Maquina de Captacion y Cierre',
     text: 'Inyectamos tus anuncios en los paises objetivo que tu elijas. El sistema captura el nombre de la empresa y el correo corporativo del importador, filtrando la curiosidad para entregarte leads calificados. Finalmente, realizamos el seguimiento tecnico e institucional via Email Marketing para nutrir el interes y cerrar contratos.',
     tone: 'tone-orange',
-    icon: E.gear,
+    icon: Cog,
+    cue: 'Motor de conversiones',
   },
 ]
 
@@ -258,7 +262,7 @@ function App() {
           </div>
         </section>
 
-        <section id="metodo" className="method-stream accent-subtle reveal"><h2>Pilares del sistema</h2><div className="pillar-flow">{pillars.map((pillar) => <article key={pillar.title} className={`pillar ${pillar.tone} reveal`}><div className="inline-head"><span className="emoji-icon">{pillar.icon}</span><h3>{pillar.title}</h3></div><p>{pillar.text}</p></article>)}</div></section>
+        <section id="metodo" className="method-stream accent-subtle reveal"><p className="section-label">Arquitectura G.A.A.P.</p><h2>Pilares del sistema</h2><div className="pillar-flow">{pillars.map((pillar, idx) => { const PillarIcon = pillar.icon; return <article key={pillar.title} className={`pillar-column ${pillar.tone} reveal`}><div className="pillar-cap"><span className="pillar-number">{String(idx + 1).padStart(2, '0')}</span><span className="pillar-icon"><PillarIcon size={20} strokeWidth={2.1} /></span></div><h3>{pillar.title}</h3><p>{pillar.text}</p><small>{pillar.cue}</small></article> })}</div></section>
 
         <section className="deliverables-zone accent-subtle reveal"><p className="section-label">Todo el arsenal para tu expansion global</p><h2>Lo que instalaremos en tu agroexportadora</h2><div className="deliverables-accordion">{deliverables.map((item, idx) => { const isOpen = openDeliverableIndex === idx; return <article key={item.title} className={`deliverable-drop ${isOpen ? 'is-open' : ''}`}><button type="button" className="deliverable-toggle" aria-expanded={isOpen} onClick={() => setOpenDeliverableIndex((prev) => prev === idx ? -1 : idx)}><span className="num-pill">{String(idx + 1).padStart(2, '0')}</span><span>{item.title}</span></button><div ref={(el) => { deliverableContentRefs.current[idx] = el }} className="deliverable-content" style={{ maxHeight: isOpen ? `${deliverableContentRefs.current[idx]?.scrollHeight ?? 0}px` : '0px' }}><ul>{item.bullets.map(([icon, text]) => <li key={text}><span className="emoji-icon list-emoji">{icon}</span>{text}</li>)}</ul></div></article> } )}</div><div className="cta-row"><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">AGENDA UNA SESION GRATUITA + Bono Especial</a></div></section>
 

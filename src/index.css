@@ -81,6 +81,11 @@ h1 span { color:var(--lime); }
   max-width: 980px;
   margin: 0 auto;
 }
+.method-stream { max-width: 1320px; }
+.method-stream .section-label,
+.method-stream h2 {
+  text-align: center;
+}
 .clients-avatars { margin-top:1.2rem; display:flex; flex-wrap:wrap; gap:.5rem; }
 .clients-avatars img { width:62px; height:62px; border-radius:999px; object-fit:cover; border:2px solid rgba(140,179,239,.6); box-shadow:0 8px 20px rgba(0,0,0,.35); }
 .narrative p { margin:0; max-width:70ch; font-size:clamp(1.12rem,2.1vw,1.55rem); color:#dce7fb; }
@@ -109,13 +114,57 @@ h2 { margin:0; font-size:clamp(1.5rem,3.8vw,2.8rem); }
 .video-frame-wrap { border:1px solid rgba(35,213,213,.45); border-radius:28px; box-shadow:0 0 40px rgba(35,213,213,.2); background:#070c18; padding:.55rem; overflow:hidden; }
 .video-frame { width:100%; aspect-ratio:16/9; border:0; border-radius:20px; display:block; }
 
-.pillar-flow { margin-top:1.3rem; display:grid; gap:.85rem; }
-.pillar { padding:1.2rem; border-left:4px solid; border-radius:18px; background:rgba(8,18,35,.55); }
-.pillar h3 { margin:0 0 .4rem; font-size:1.2rem; }
-.pillar p { margin:0; color:var(--muted); }
+.pillar-flow { margin-top:2.8rem; display:grid; gap:1rem; grid-template-columns:1fr; align-items:stretch; }
+.pillar-column {
+  padding:1.95rem 2.2rem 1.75rem;
+  border:1px solid rgba(73,133,206,.28);
+  border-radius:18px;
+  background:linear-gradient(180deg, rgba(24,31,40,.88) 0%, rgba(17,24,34,.84) 100%);
+  min-height: 500px;
+  position:relative;
+  overflow:hidden;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.22), 0 0 24px rgba(35,213,213,.08);
+  display:flex;
+  flex-direction:column;
+}
+.pillar-column::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background: radial-gradient(120% 90% at 0% 0%, rgba(35,213,213,.08), transparent 55%);
+  pointer-events:none;
+}
+.pillar-cap { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.45rem; }
+.pillar-number {
+  width:2.35rem;
+  height:2.35rem;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:.82rem;
+  font-weight:800;
+  color:#8feeff;
+  border:1px solid rgba(55,202,255,.5);
+  background:rgba(11,50,74,.5);
+}
+.pillar-icon { margin:0; width:1.35rem; height:1.35rem; font-size:1.15rem; color:#2dddf4; }
+.pillar-column h3 { margin:0 0 1rem; font-size:1.98rem; line-height:1.06; max-width:11ch; }
+.pillar-column p { margin:0; color:#c3d1e5; line-height:1.52; font-size:1.06rem; max-width:31ch; }
+.pillar-column small { margin-top:auto; display:block; padding-top:1.85rem; text-transform:uppercase; letter-spacing:.15em; font-weight:700; font-size:.78rem; }
 .tone-cyan { border-color:var(--cyan); }
 .tone-lime { border-color:var(--lime); }
 .tone-orange { border-color:var(--orange); }
+.tone-cyan small,.tone-lime small { color:#26e6ff; }
+.tone-lime .pillar-number {
+  color:#cfff8a;
+  border-color:rgba(186,255,113,.5);
+  background:rgba(41,77,21,.35);
+}
+.tone-lime .pillar-icon,
+.tone-lime small { color:#baf779; }
+.tone-orange .pillar-number { color:#ffe283; border-color:rgba(255,199,62,.52); background:rgba(88,67,13,.35); }
+.tone-orange .pillar-icon,.tone-orange small { color:#ffd94a; }
 
 .deliverables-accordion { margin-top:1.2rem; display:grid; gap:.8rem; }
 .deliverable-drop { border:1px solid var(--line); border-radius:18px; background:linear-gradient(165deg, rgba(11,25,45,.88), rgba(10,19,37,.64)); overflow:hidden; }
@@ -216,10 +265,13 @@ h2 { margin:0; font-size:clamp(1.5rem,3.8vw,2.8rem); }
 @media (min-width:880px) {
   .metrics-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .proof-list { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .pillar-flow { grid-template-columns:repeat(3,minmax(0,1fr)); }
 }
 
 @media (max-width:900px) {
   .hero-split { grid-template-columns: 1fr; }
   .hero-video-wrap { max-width: 720px; margin: 0 auto; position: static; }
   .video-section,.chart-zone,.reel-grid,.stats-strip { grid-template-columns:1fr; }
+  .pillar-column { min-height:auto; }
+  .pillar-column h3 { font-size:1.9rem; }
 }
