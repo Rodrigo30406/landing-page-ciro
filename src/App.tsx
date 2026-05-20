@@ -43,13 +43,6 @@ const numbers: Metric[] = [
 
 const barsData = [24, 32, 45, 61, 78, 93]
 
-const metricCards = [
-  { title: 'Blindaje de Reputacion', value: '4 canales', detail: 'Instagram, Facebook, LinkedIn y Email alineados', icon: E.money },
-  { title: 'Activos Mensuales', value: '8+', detail: 'reels, fotos, disenos tecnicos y carruseles', icon: E.check },
-  { title: 'Publicaciones LinkedIn', value: '6', detail: 'mensuales para tomadores de decision globales', icon: E.chart },
-  { title: 'Frecuencia Email', value: '1/sem', detail: 'nutricion institucional a base de compradores', icon: E.bolt },
-]
-
 const deliverables: Deliverable[] = [
   {
     title: 'Ingenieria de Narrativa y Briefing Estrategico',
