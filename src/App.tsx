@@ -152,7 +152,7 @@ const testimonials = [
   { name: 'Cliente Agro #3', result: 'Mejor posicionamiento institucional para negociacion B2B' },
 ]
 
-function AnimatedNumber({ value }: { value: string }) {
+function AnimatedNumber({ value, start }: { value: string; start: boolean }) {
   const [display, setDisplay] = useState(0)
   const numeric = useMemo(() => {
     const clean = value.replace(/[^0-9.]/g, '')
@@ -162,25 +162,33 @@ function AnimatedNumber({ value }: { value: string }) {
   }, [value])
 
   useEffect(() => {
+    if (!start) {
+      setDisplay(0)
+      return
+    }
+
     let raf = 0
     const duration = 1400
-    const start = performance.now()
+    const t0 = performance.now()
     const tick = (now: number) => {
-      const p = Math.min((now - start) / duration, 1)
+      const p = Math.min((now - t0) / duration, 1)
       const eased = 1 - Math.pow(1 - p, 3)
       setDisplay(Number((numeric * eased).toFixed(1)))
       if (p < 1) raf = requestAnimationFrame(tick)
     }
+
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [numeric])
+  }, [numeric, start])
 
   return <>{Number.isInteger(numeric) ? Math.round(display) : display.toFixed(1)}</>
 }
 
 function App() {
   const [barsActive, setBarsActive] = useState(false)
+  const [statsActive, setStatsActive] = useState(false)
   const barsRef = useRef<HTMLDivElement | null>(null)
+  const statsRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
@@ -209,6 +217,15 @@ function App() {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    if (!statsRef.current) return
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setStatsActive(true)
+    }, { threshold: 0.45 })
+    observer.observe(statsRef.current)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <>
       <main>
@@ -218,7 +235,7 @@ function App() {
               <p className="kicker">Exclusivo para duenos y gerentes generales de empresas agroexportadoras</p>
               <h1>El Sistema de Posicionamiento y Adquisicion Global para Agroexportadoras</h1>
               <p className="lead">Escala el valor de tu negocio de un commodity a una marca lider mundial. Mira este video de 3 minutos para activar un flujo predecible de intenciones reales de compra en los paises destino de tu eleccion, sin regatear precios con intermediarios.</p>
-              <div className="cta-row"><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">AGENDA UNA SESION GRATUITA + Bono Especial</a><a href="#metodo" className="btn btn-ghost">Ver sistema</a></div>
+              <div className="cta-row"><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">AGENDA UNA SESION GRATUITA + Bono Especial</a></div>
             </div>
             <div className="hero-video-wrap">
               <iframe className="video-frame" src="https://www.youtube.com/embed/9No-FiEInLA" title="Video de presentacion GAAP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen />
@@ -228,14 +245,14 @@ function App() {
 
         <section className="clients-strip accent-subtle reveal"><p className="section-label">Algunos de nuestros clientes</p><h2>Decenas de agroexportadores con casos de exito aplicaron el Protocolo G.A.A.P.</h2><div className="clients-avatars" aria-label="Fotos de clientes demo">{clientFaces.map((src, idx) => <img key={src} src={src} alt={`Cliente demo ${idx + 1}`} loading="lazy" />)}</div></section>
 
-        <section className="narrative accent-subtle reveal">
+        <section ref={statsRef} className="narrative accent-subtle reveal">
           <p>Nadie en esta industria se atreve a mostrar metricas. Nosotros nos enorgullecemos de ellas.</p>
           <div className="stats-strip in-metrics">
             {numbers.map((item) => (
               <article key={item.label} className="stat-card reveal">
                 <div className="inline-head">
                   <span className="emoji-icon">{item.icon}</span>
-                  <strong><AnimatedNumber value={item.value} /></strong>
+                  <strong><AnimatedNumber value={item.value} start={statsActive} /></strong>
                 </div>
                 <span>{item.label}</span>
                 <small>{item.trend}</small>
@@ -243,8 +260,6 @@ function App() {
             ))}
           </div>
         </section>
-
-        <section className="metrics-zone accent-chart reveal"><p className="section-label">Protocolo G.A.A.P. en numeros</p><h2>Infraestructura de posicionamiento y adquisicion instalada mes a mes</h2><p className="metrics-lead">Sistema diseñado para reputacion global, atraccion a escala y cierre comercial con seguimiento institucional.</p><div className="metrics-grid">{metricCards.map((item) => <article key={item.title} className="metric-box dynamic-card reveal"><div className="inline-head"><span className="emoji-icon">{item.icon}</span><p>{item.title}</p></div><strong>{item.value}</strong><span>{item.detail}</span></article>)}</div></section>
 
         <section id="metodo" className="method-stream accent-subtle reveal"><h2>Pilares del sistema</h2><div className="pillar-flow">{pillars.map((pillar) => <article key={pillar.title} className={`pillar ${pillar.tone} reveal`}><div className="inline-head"><span className="emoji-icon">{pillar.icon}</span><h3>{pillar.title}</h3></div><p>{pillar.text}</p></article>)}</div></section>
 
