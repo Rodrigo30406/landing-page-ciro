@@ -234,8 +234,10 @@ function App() {
           <div className="hero-split">
             <div className="hero-copy">
               <p className="kicker">Exclusivo para duenos y gerentes generales de empresas agroexportadoras</p>
-              <h1>El Sistema de Posicionamiento y Adquisicion Global para Agroexportadoras</h1>
-              <p className="lead">Escala el valor de tu negocio de un commodity a una marca lider mundial. Mira este video de 3 minutos para activar un flujo predecible de intenciones reales de compra en los paises destino de tu eleccion, sin regatear precios con intermediarios.</p>
+              <h1>
+                El sistema para agroexportadoras que quieren <span className="hero-highlight">captar clientes</span> premium en destino y posicionarse como una <span className="hero-highlight">autoridad global</span>
+              </h1>
+              <p className="lead">Mira este video para descubrir cómo activar un flujo predecible de intenciones reales de compra en destino, asegurar la colocación de tu campaña y escalar tus márgenes.</p>
               <div className="cta-row"><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">AGENDA UNA SESION GRATUITA + Bono Especial</a></div>
             </div>
             <div className="hero-video-wrap">
@@ -276,7 +278,7 @@ function App() {
 
         <section className="proof-stream accent-subtle reveal"><p className="section-label">Casos de exito</p><h2>Clientes que pasaron de presencia digital a sistema comercial</h2><div className="proof-list">{testimonials.map((item) => <article key={item.name} className="dynamic-card reveal"><h3>{item.name}</h3><p>{item.result}</p></article>)}</div></section>
 
-        <section id="contacto" className="final-cta reveal"><h2>AGENDA UNA SESION GRATUITA + Bono Especial</h2><p>Activa el Protocolo G.A.A.P. y escala tu posicionamiento global con un flujo predecible de intenciones reales de compra.</p><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">Ir a Calendly</a></section>
+        <section id="contacto" className="final-cta reveal"><h2>AGENDA UNA SESION GRATUITA + Bono Especial</h2><p>Activa el Protocolo G.A.A.P. y escala tu posicionamiento global con un flujo predecible de intenciones reales de compra.</p><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">AGENDA AHORA</a></section>
       </main>
 
       <footer className="legal-footer"><div className="legal-wrap"><div className="legal-logo">AVISO LEGAL Y DESCARGO DE RESPONSABILIDAD</div><p>La tarifa de consultoria del Protocolo G.A.A.P. corresponde exclusivamente al diseño estrategico, produccion y optimizacion del sistema. Toda inversion en pauta publicitaria (Ads) es independiente y sera cubierta por el presupuesto del cliente.</p><p>Las sesiones mensuales de registro audiovisual cubren traslados unicamente dentro de Lima Metropolitana. Producciones fuera de este limite requieren cobertura independiente de costos logisticos y viaticos.</p><p>Los resultados comerciales mostrados representan hitos logrados bajo ejecucion rigurosa y no constituyen promesa o garantia de facturacion o cierre de contratos fijos. El exito depende de multiples variables operativas, logisticas y de mercado ajenas a nuestro control.</p></div></footer>

@@ -30,7 +30,7 @@ h1,h2,h3 { font-family:'Sora',sans-serif; line-height:1.08; letter-spacing:-.02e
 }
 .hero-split {
   display: grid;
-  grid-template-columns: minmax(560px, 56%) minmax(560px, 44%);
+  grid-template-columns: minmax(620px, 60%) minmax(520px, 40%);
   gap: clamp(1rem, 1.8vw, 2rem);
   align-items: center;
 }
@@ -53,8 +53,23 @@ h1,h2,h3 { font-family:'Sora',sans-serif; line-height:1.08; letter-spacing:-.02e
   top: auto;
 }
 .kicker { margin:0 0 1rem; text-transform:uppercase; font-size:.76rem; font-weight:700; letter-spacing:.13em; color:var(--cyan); }
-h1 { margin:0; max-width:10ch; font-size:clamp(2.2rem,4.6vw,5rem); line-height:1.03; }
-h1 span { color:var(--lime); }
+h1 { margin:0; max-width:16ch; font-size:clamp(2rem,4vw,4.25rem); line-height:1.06; }
+.hero-highlight {
+  background-image: linear-gradient(110deg, #22d3ee 0%, #6ef2ff 35%, #b7ff6f 52%, #36a3ff 72%, #22d3ee 100%);
+  background-size: 220% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: heroGlowWave 3.6s ease-in-out infinite alternate;
+  text-shadow: 0 0 18px rgba(54, 163, 255, 0.22);
+}
+@keyframes heroGlowWave {
+  0% { background-position: 0% 50%; filter: brightness(.96); }
+  50% { background-position: 55% 50%; filter: brightness(1.08); }
+  100% { background-position: 100% 50%; filter: brightness(1); }
+}
 .lead { margin-top:1.2rem; max-width:58ch; line-height:1.6; color:var(--muted); font-size:clamp(1rem,1.6vw,1.2rem); }
 
 .tag-row { margin-top:1.5rem; display:flex; flex-wrap:wrap; gap:.65rem; }
