@@ -180,10 +180,12 @@ function AnimatedNumber({ value, start }: { value: string; start: boolean }) {
 function App() {
   const showReelsSection = false
   const showPipelineSection = false
+  const [openDeliverableIndex, setOpenDeliverableIndex] = useState(0)
   const [barsActive, setBarsActive] = useState(false)
   const [statsActive, setStatsActive] = useState(false)
   const barsRef = useRef<HTMLDivElement | null>(null)
   const statsRef = useRef<HTMLElement | null>(null)
+  const deliverableContentRefs = useRef<Array<HTMLDivElement | null>>([])
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
@@ -258,7 +260,7 @@ function App() {
 
         <section id="metodo" className="method-stream accent-subtle reveal"><h2>Pilares del sistema</h2><div className="pillar-flow">{pillars.map((pillar) => <article key={pillar.title} className={`pillar ${pillar.tone} reveal`}><div className="inline-head"><span className="emoji-icon">{pillar.icon}</span><h3>{pillar.title}</h3></div><p>{pillar.text}</p></article>)}</div></section>
 
-        <section className="deliverables-zone accent-subtle reveal"><p className="section-label">Todo el arsenal para tu expansion global</p><h2>Lo que instalaremos en tu agroexportadora</h2><div className="deliverables-accordion">{deliverables.map((item, idx) => <details key={item.title} className="deliverable-drop reveal" open={idx === 0}><summary><span className="num-pill">{String(idx + 1).padStart(2, '0')}</span><span>{item.title}</span></summary><ul>{item.bullets.map(([icon, text]) => <li key={text}><span className="emoji-icon list-emoji">{icon}</span>{text}</li>)}</ul></details>)}</div><div className="cta-row"><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">AGENDA UNA SESION GRATUITA + Bono Especial</a></div></section>
+        <section className="deliverables-zone accent-subtle reveal"><p className="section-label">Todo el arsenal para tu expansion global</p><h2>Lo que instalaremos en tu agroexportadora</h2><div className="deliverables-accordion">{deliverables.map((item, idx) => { const isOpen = openDeliverableIndex === idx; return <article key={item.title} className={`deliverable-drop ${isOpen ? 'is-open' : ''}`}><button type="button" className="deliverable-toggle" aria-expanded={isOpen} onClick={() => setOpenDeliverableIndex((prev) => prev === idx ? -1 : idx)}><span className="num-pill">{String(idx + 1).padStart(2, '0')}</span><span>{item.title}</span></button><div ref={(el) => { deliverableContentRefs.current[idx] = el }} className="deliverable-content" style={{ maxHeight: isOpen ? `${deliverableContentRefs.current[idx]?.scrollHeight ?? 0}px` : '0px' }}><ul>{item.bullets.map(([icon, text]) => <li key={text}><span className="emoji-icon list-emoji">{icon}</span>{text}</li>)}</ul></div></article> } )}</div><div className="cta-row"><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">AGENDA UNA SESION GRATUITA + Bono Especial</a></div></section>
 
         {showReelsSection && (
           <section className="media-block accent-subtle reveal"><div className="media-copy"><p className="section-label">Contenido de atraccion</p><h2>Reels de alto impacto con plantillas G.A.A.P.</h2><p>Piezas para detener el scroll de tu cliente ideal y generar interes inmediato en tu oferta exportadora.</p></div><div className="reel-grid">{reelIdeas.map((item, idx) => <article key={item} className="reel-card dynamic-card reveal"><span>{E.video} Video {idx + 1}</span><p>{item}</p><button type="button">Ver caso</button></article>)}</div></section>

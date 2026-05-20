@@ -119,12 +119,14 @@ h2 { margin:0; font-size:clamp(1.5rem,3.8vw,2.8rem); }
 
 .deliverables-accordion { margin-top:1.2rem; display:grid; gap:.8rem; }
 .deliverable-drop { border:1px solid var(--line); border-radius:18px; background:linear-gradient(165deg, rgba(11,25,45,.88), rgba(10,19,37,.64)); overflow:hidden; }
-.deliverable-drop summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:.65rem; padding:.9rem; font-weight:700; position:relative; padding-right:2.4rem; }
-.deliverable-drop summary::-webkit-details-marker { display:none; }
-.deliverable-drop summary::after { content:''; position:absolute; right:1rem; top:50%; width:.5rem; height:.5rem; border-right:2px solid #9bc7ff; border-bottom:2px solid #9bc7ff; transform:translateY(-65%) rotate(45deg); transition:transform .2s ease; }
-.deliverable-drop[open] summary::after { transform:translateY(-35%) rotate(225deg); }
+.deliverable-toggle { width:100%; border:0; background:transparent; color:inherit; text-align:left; cursor:pointer; display:flex; align-items:center; gap:.65rem; padding:.9rem; font-weight:700; position:relative; padding-right:2.4rem; font:inherit; }
+.deliverable-toggle::after { content:''; position:absolute; right:1rem; top:50%; width:.5rem; height:.5rem; border-right:2px solid #9bc7ff; border-bottom:2px solid #9bc7ff; transform:translateY(-65%) rotate(45deg); transition:transform .2s ease; }
+.deliverable-drop.is-open .deliverable-toggle::after { transform:translateY(-35%) rotate(225deg); }
 .num-pill { border-radius:999px; width:2rem; height:2rem; display:inline-flex; align-items:center; justify-content:center; font-size:.82rem; background:linear-gradient(130deg, #2fd7d7, #3394ff); color:#06242f; }
-.deliverable-drop ul { margin:0; padding:0 1rem 1rem 2.9rem; color:var(--muted); }
+.deliverable-content { overflow:hidden; opacity:0; transition:max-height .55s cubic-bezier(.2,.8,.2,1), opacity .34s ease; }
+.deliverable-content ul { margin:0; padding:0 1rem 0 2.9rem; color:var(--muted); transform:translateY(-10px); transition:transform .42s cubic-bezier(.2,.8,.2,1), padding .42s cubic-bezier(.2,.8,.2,1); }
+.deliverable-drop.is-open .deliverable-content { opacity:1; }
+.deliverable-drop.is-open .deliverable-content ul { padding:0 1rem 1rem 2.9rem; transform:translateY(0); }
 .deliverable-drop li { margin-bottom:.45rem; }
 .deliverable-drop li {
   list-style: none;
