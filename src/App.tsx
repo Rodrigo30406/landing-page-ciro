@@ -37,8 +37,8 @@ const E = {
 
 const numbers: Metric[] = [
   { value: '9.4', label: 'calificacion promedio al Protocolo G.A.A.P.', trend: 'Metrica reportada en casos de exito', icon: E.target },
-  { value: '120', label: 'leads corporativos captados (demo)', trend: 'Nombre de empresa + correo corporativo', icon: E.trend },
-  { value: '18', label: 'paises objetivo activados (demo)', trend: 'Segmentacion internacional por mercado destino', icon: E.handshake },
+  { value: '+1500', label: 'leads corporativos captados', trend: 'Nombre de empresa + correo corporativo', icon: E.trend },
+  { value: '52', label: 'paises objetivo activados', trend: 'Segmentacion internacional por mercado destino', icon: E.handshake },
 ]
 
 const barsData = [24, 32, 45, 61, 78, 93]
@@ -178,6 +178,8 @@ function AnimatedNumber({ value, start }: { value: string; start: boolean }) {
 }
 
 function App() {
+  const showReelsSection = false
+  const showPipelineSection = false
   const [barsActive, setBarsActive] = useState(false)
   const [statsActive, setStatsActive] = useState(false)
   const barsRef = useRef<HTMLDivElement | null>(null)
@@ -245,7 +247,7 @@ function App() {
               <article key={item.label} className="stat-card reveal">
                 <div className="inline-head">
                   <span className="emoji-icon">{item.icon}</span>
-                  <strong><AnimatedNumber value={item.value} start={statsActive} /></strong>
+                  <strong>{item.value.startsWith('+') ? '+' : ''}<AnimatedNumber value={item.value} start={statsActive} /></strong>
                 </div>
                 <span>{item.label}</span>
                 <small>{item.trend}</small>
@@ -258,9 +260,13 @@ function App() {
 
         <section className="deliverables-zone accent-subtle reveal"><p className="section-label">Todo el arsenal para tu expansion global</p><h2>Lo que instalaremos en tu agroexportadora</h2><div className="deliverables-accordion">{deliverables.map((item, idx) => <details key={item.title} className="deliverable-drop reveal" open={idx === 0}><summary><span className="num-pill">{String(idx + 1).padStart(2, '0')}</span><span>{item.title}</span></summary><ul>{item.bullets.map(([icon, text]) => <li key={text}><span className="emoji-icon list-emoji">{icon}</span>{text}</li>)}</ul></details>)}</div><div className="cta-row"><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">AGENDA UNA SESION GRATUITA + Bono Especial</a></div></section>
 
-        <section className="media-block accent-subtle reveal"><div className="media-copy"><p className="section-label">Contenido de atraccion</p><h2>Reels de alto impacto con plantillas G.A.A.P.</h2><p>Piezas para detener el scroll de tu cliente ideal y generar interes inmediato en tu oferta exportadora.</p></div><div className="reel-grid">{reelIdeas.map((item, idx) => <article key={item} className="reel-card dynamic-card reveal"><span>{E.video} Video {idx + 1}</span><p>{item}</p><button type="button">Ver caso</button></article>)}</div></section>
+        {showReelsSection && (
+          <section className="media-block accent-subtle reveal"><div className="media-copy"><p className="section-label">Contenido de atraccion</p><h2>Reels de alto impacto con plantillas G.A.A.P.</h2><p>Piezas para detener el scroll de tu cliente ideal y generar interes inmediato en tu oferta exportadora.</p></div><div className="reel-grid">{reelIdeas.map((item, idx) => <article key={item} className="reel-card dynamic-card reveal"><span>{E.video} Video {idx + 1}</span><p>{item}</p><button type="button">Ver caso</button></article>)}</div></section>
+        )}
 
-        <section className="chart-zone accent-chart reveal"><div><p className="section-label">Metrica demo</p><h2>Crecimiento de pipeline en 12 semanas</h2><p>Datos ficticios para presentacion: luego reemplazamos por tus datos reales.</p></div><div ref={barsRef} className="bars" aria-label="Grafico de barras demo">{barsData.map((h, idx) => <div key={h} className={`bar ${barsActive ? 'bar-active' : ''}`} style={{ ['--h' as string]: `${h}%`, ['--d' as string]: `${idx * 120}ms` }}><span>{`W${idx * 2 + 1}`}</span></div>)}</div></section>
+        {showPipelineSection && (
+          <section className="chart-zone accent-chart reveal"><div><p className="section-label">Metrica demo</p><h2>Crecimiento de pipeline en 12 semanas</h2><p>Datos ficticios para presentacion: luego reemplazamos por tus datos reales.</p></div><div ref={barsRef} className="bars" aria-label="Grafico de barras demo">{barsData.map((h, idx) => <div key={h} className={`bar ${barsActive ? 'bar-active' : ''}`} style={{ ['--h' as string]: `${h}%`, ['--d' as string]: `${idx * 120}ms` }}><span>{`W${idx * 2 + 1}`}</span></div>)}</div></section>
+        )}
 
         <section className="proof-stream accent-subtle reveal"><p className="section-label">Casos de exito</p><h2>Clientes que pasaron de presencia digital a sistema comercial</h2><div className="proof-list">{testimonials.map((item) => <article key={item.name} className="dynamic-card reveal"><h3>{item.name}</h3><p>{item.result}</p></article>)}</div></section>
 
