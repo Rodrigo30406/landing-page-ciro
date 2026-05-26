@@ -184,6 +184,7 @@ function AnimatedNumber({ value, start }: { value: string; start: boolean }) {
 function App() {
   const showReelsSection = false
   const showPipelineSection = false
+  const showSuccessCasesSection = false
   const [openDeliverableIndex, setOpenDeliverableIndex] = useState(0)
   const [barsActive, setBarsActive] = useState(false)
   const [statsActive, setStatsActive] = useState(false)
@@ -233,6 +234,9 @@ function App() {
         <section className="hero-stream accent-hero reveal">
           <div className="hero-split">
             <div className="hero-copy">
+              <div className="hero-brand">
+                <img src="/favicon-pacific-partners.png" alt="Pacific Partners" />
+              </div>
               <p className="kicker">Exclusivo para duenos y gerentes generales de empresas agroexportadoras</p>
               <h1>
                 El sistema para agroexportadoras que quieren <span className="hero-highlight">captar clientes</span> premium en destino y posicionarse como una <span className="hero-highlight">autoridad global</span>
@@ -241,7 +245,7 @@ function App() {
               <div className="cta-row hero-cta-desktop"><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">AGENDA UNA SESION GRATUITA + Bono Especial</a></div>
             </div>
             <div className="hero-video-wrap">
-              <iframe className="video-frame" src="https://www.youtube.com/embed/9No-FiEInLA" title="Video de presentacion GAAP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen />
+              <iframe className="video-frame" src="https://www.youtube.com/embed/icQvd09G2I4" title="Video de presentacion GAAP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen />
             </div>
             <div className="cta-row hero-cta-mobile"><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">AGENDA UNA SESION GRATUITA + Bono Especial</a></div>
           </div>
@@ -277,7 +281,9 @@ function App() {
           <section className="chart-zone accent-chart reveal"><div><p className="section-label">Metrica demo</p><h2>Crecimiento de pipeline en 12 semanas</h2><p>Datos ficticios para presentacion: luego reemplazamos por tus datos reales.</p></div><div ref={barsRef} className="bars" aria-label="Grafico de barras demo">{barsData.map((h, idx) => <div key={h} className={`bar ${barsActive ? 'bar-active' : ''}`} style={{ ['--h' as string]: `${h}%`, ['--d' as string]: `${idx * 120}ms` }}><span>{`W${idx * 2 + 1}`}</span></div>)}</div></section>
         )}
 
-        <section className="proof-stream accent-subtle reveal"><p className="section-label">Casos de exito</p><h2>Clientes que pasaron de presencia digital a sistema comercial</h2><div className="proof-list">{testimonials.map((item) => <article key={item.name} className="dynamic-card reveal"><h3>{item.name}</h3><p>{item.result}</p></article>)}</div></section>
+        {showSuccessCasesSection && (
+          <section className="proof-stream accent-subtle reveal"><p className="section-label">Casos de exito</p><h2>Clientes que pasaron de presencia digital a sistema comercial</h2><div className="proof-list">{testimonials.map((item) => <article key={item.name} className="dynamic-card reveal"><h3>{item.name}</h3><p>{item.result}</p></article>)}</div></section>
+        )}
 
         <section id="contacto" className="final-cta reveal"><h2>AGENDA UNA SESION GRATUITA + Bono Especial</h2><p>Activa el Protocolo G.A.A.P. y escala tu posicionamiento global con un flujo predecible de intenciones reales de compra.</p><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">AGENDA AHORA</a></section>
       </main>
