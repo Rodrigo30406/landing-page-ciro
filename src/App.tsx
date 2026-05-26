@@ -231,12 +231,13 @@ function App() {
   return (
     <>
       <main>
+        <header className="top-brand-header">
+          <img src="/favicon-pacific-partners.png" alt="Pacific Partners" />
+        </header>
+
         <section className="hero-stream accent-hero reveal">
           <div className="hero-split">
             <div className="hero-copy">
-              <div className="hero-brand">
-                <img src="/favicon-pacific-partners.png" alt="Pacific Partners" />
-              </div>
               <p className="kicker">Exclusivo para duenos y gerentes generales de empresas agroexportadoras</p>
               <h1>
                 El sistema para agroexportadoras que quieren <span className="hero-highlight">captar clientes</span> premium en destino y posicionarse como una <span className="hero-highlight">autoridad global</span>
