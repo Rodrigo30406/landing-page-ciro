@@ -149,6 +149,9 @@ const testimonials = [
   { name: 'Cliente Agro #3', result: 'Mejor posicionamiento institucional para negociacion B2B' },
 ]
 
+const calendlyUrl = 'https://calendly.com/cironumon/asesoria-protocolo-gaap?background_color=020202&text_color=e9eefb&primary_color=23d5d5'
+const whatsappUrl = 'https://wa.me/51999921068?text=Hola%2C%20quiero%20agendar%20una%20sesion%20gratuita%20del%20Protocolo%20G.A.A.P.'
+
 function AnimatedNumber({ value, start }: { value: string; start: boolean }) {
   const [display, setDisplay] = useState(0)
   const numeric = useMemo(() => {
@@ -181,6 +184,17 @@ function AnimatedNumber({ value, start }: { value: string; start: boolean }) {
   return <>{Number.isInteger(numeric) ? Math.round(display) : display.toFixed(1)}</>
 }
 
+function WhatsAppIcon() {
+  return (
+    <svg className="btn-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path
+        fill="currentColor"
+        d="M12.04 2.5a9.43 9.43 0 0 0-8.16 14.15L2.75 21.5l4.98-1.1a9.37 9.37 0 0 0 4.3 1.05h.01a9.48 9.48 0 0 0 0-18.95Zm0 17.35h-.01a7.79 7.79 0 0 1-3.96-1.08l-.28-.17-2.95.65.66-2.87-.18-.3a7.82 7.82 0 1 1 6.72 3.77Zm4.3-5.86c-.24-.12-1.4-.69-1.61-.77-.22-.08-.37-.12-.53.12-.15.23-.61.77-.75.92-.14.16-.28.18-.52.06-.23-.12-1-.37-1.91-1.18-.7-.63-1.18-1.41-1.32-1.65-.14-.24-.01-.37.11-.49.1-.11.23-.28.35-.42.12-.14.16-.24.24-.39.08-.16.04-.3-.02-.42-.06-.12-.53-1.27-.72-1.73-.19-.46-.38-.39-.53-.4h-.45c-.15 0-.41.06-.62.3-.21.23-.82.8-.82 1.95 0 1.15.84 2.26.96 2.42.12.15 1.65 2.52 4 3.53.56.24.99.38 1.33.49.56.18 1.07.15 1.47.09.45-.07 1.4-.57 1.59-1.12.2-.55.2-1.02.14-1.12-.06-.1-.21-.16-.45-.28Z"
+      />
+    </svg>
+  )
+}
+
 function App() {
   const showReelsSection = false
   const showPipelineSection = false
@@ -194,6 +208,17 @@ function App() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [])
+
+  useEffect(() => {
+    const scriptId = 'calendly-widget-script'
+    if (document.getElementById(scriptId)) return
+
+    const script = document.createElement('script')
+    script.id = scriptId
+    script.src = 'https://assets.calendly.com/assets/external/widget.js'
+    script.async = true
+    document.body.appendChild(script)
   }, [])
 
   useEffect(() => {
@@ -243,12 +268,12 @@ function App() {
                 El sistema para agroexportadoras que quieren <span className="hero-highlight">captar clientes</span> premium en destino y posicionarse como una <span className="hero-highlight">autoridad global</span>
               </h1>
               <p className="lead">Mira este video para descubrir cómo activar un flujo predecible de intenciones reales de compra en destino, asegurar la colocación de tu campaña y escalar tus márgenes.</p>
-              <div className="cta-row hero-cta-desktop"><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">AGENDA UNA SESION GRATUITA + Bono Especial</a></div>
+              <div className="cta-row hero-cta-desktop"><a href={whatsappUrl} target="_blank" rel="noreferrer" className="btn btn-main"><WhatsAppIcon />AGENDA UNA SESION GRATUITA + Bono Especial</a></div>
             </div>
             <div className="hero-video-wrap">
               <iframe className="video-frame" src="https://www.youtube.com/embed/icQvd09G2I4" title="Video de presentacion GAAP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen />
             </div>
-            <div className="cta-row hero-cta-mobile"><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">AGENDA UNA SESION GRATUITA + Bono Especial</a></div>
+            <div className="cta-row hero-cta-mobile"><a href={whatsappUrl} target="_blank" rel="noreferrer" className="btn btn-main"><WhatsAppIcon />AGENDA UNA SESION GRATUITA + Bono Especial</a></div>
           </div>
         </section>
 
@@ -272,7 +297,7 @@ function App() {
 
         <section id="metodo" className="method-stream accent-subtle reveal"><p className="section-label">Arquitectura G.A.A.P.</p><h2>Pilares del sistema</h2><div className="pillar-flow">{pillars.map((pillar, idx) => { const PillarIcon = pillar.icon; return <article key={pillar.title} className={`pillar-column ${pillar.tone} reveal`}><div className="pillar-cap"><span className="pillar-number">{String(idx + 1).padStart(2, '0')}</span><span className="pillar-icon"><PillarIcon size={20} strokeWidth={2.1} /></span></div><h3>{pillar.title}</h3><p>{pillar.text}</p><small>{pillar.cue}</small></article> })}</div></section>
 
-        <section className="deliverables-zone accent-subtle reveal"><p className="section-label">Todo el arsenal para tu expansion global</p><h2>Lo que instalaremos en tu agroexportadora</h2><div className="deliverables-accordion">{deliverables.map((item, idx) => { const isOpen = openDeliverableIndex === idx; return <article key={item.title} className={`deliverable-drop ${isOpen ? 'is-open' : ''}`}><button type="button" className="deliverable-toggle" aria-expanded={isOpen} onClick={() => setOpenDeliverableIndex((prev) => prev === idx ? -1 : idx)}><span className="num-pill">{String(idx + 1).padStart(2, '0')}</span><span>{item.title}</span></button><div ref={(el) => { deliverableContentRefs.current[idx] = el }} className="deliverable-content" style={{ maxHeight: isOpen ? `${deliverableContentRefs.current[idx]?.scrollHeight ?? 0}px` : '0px' }}><ul>{item.bullets.map(([icon, text]) => <li key={text}><span className="emoji-icon list-emoji">{icon}</span>{text}</li>)}</ul></div></article> } )}</div><div className="cta-row"><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">AGENDA UNA SESION GRATUITA + Bono Especial</a></div></section>
+        <section className="deliverables-zone accent-subtle reveal"><p className="section-label">Todo el arsenal para tu expansion global</p><h2>Lo que instalaremos en tu agroexportadora</h2><div className="deliverables-accordion">{deliverables.map((item, idx) => { const isOpen = openDeliverableIndex === idx; return <article key={item.title} className={`deliverable-drop ${isOpen ? 'is-open' : ''}`}><button type="button" className="deliverable-toggle" aria-expanded={isOpen} onClick={() => setOpenDeliverableIndex((prev) => prev === idx ? -1 : idx)}><span className="num-pill">{String(idx + 1).padStart(2, '0')}</span><span>{item.title}</span></button><div ref={(el) => { deliverableContentRefs.current[idx] = el }} className="deliverable-content" style={{ maxHeight: isOpen ? `${deliverableContentRefs.current[idx]?.scrollHeight ?? 0}px` : '0px' }}><ul>{item.bullets.map(([icon, text]) => <li key={text}><span className="emoji-icon list-emoji">{icon}</span>{text}</li>)}</ul></div></article> } )}</div><div className="cta-row"><a href={whatsappUrl} target="_blank" rel="noreferrer" className="btn btn-main"><WhatsAppIcon />AGENDA UNA SESION GRATUITA + Bono Especial</a></div></section>
 
         {showReelsSection && (
           <section className="media-block accent-subtle reveal"><div className="media-copy"><p className="section-label">Contenido de atraccion</p><h2>Reels de alto impacto con plantillas G.A.A.P.</h2><p>Piezas para detener el scroll de tu cliente ideal y generar interes inmediato en tu oferta exportadora.</p></div><div className="reel-grid">{reelIdeas.map((item, idx) => <article key={item} className="reel-card dynamic-card reveal"><span>{E.video} Video {idx + 1}</span><p>{item}</p><button type="button">Ver caso</button></article>)}</div></section>
@@ -286,7 +311,18 @@ function App() {
           <section className="proof-stream accent-subtle reveal"><p className="section-label">Casos de exito</p><h2>Clientes que pasaron de presencia digital a sistema comercial</h2><div className="proof-list">{testimonials.map((item) => <article key={item.name} className="dynamic-card reveal"><h3>{item.name}</h3><p>{item.result}</p></article>)}</div></section>
         )}
 
-        <section id="contacto" className="final-cta reveal"><h2>AGENDA UNA SESION GRATUITA + Bono Especial</h2><p>Activa el Protocolo G.A.A.P. y escala tu posicionamiento global con un flujo predecible de intenciones reales de compra.</p><a href="https://calendly.com/cironumon/asesoria-protocolo-gaap" target="_blank" rel="noreferrer" className="btn btn-main">AGENDA AHORA</a></section>
+        <section id="contacto" className="final-cta reveal">
+          <div className="final-cta-copy">
+            <p className="section-label">Agenda tu asesoria</p>
+            <h2>AGENDA UNA SESION GRATUITA + Bono Especial</h2>
+            <p>Activa el Protocolo G.A.A.P. y escala tu posicionamiento global con un flujo predecible de intenciones reales de compra.</p>
+          </div>
+          <div
+            className="calendly-inline-widget"
+            data-url={calendlyUrl}
+            title="Agenda una sesion gratuita"
+          />
+        </section>
       </main>
 
       <footer className="legal-footer"><div className="legal-wrap"><div className="legal-logo">AVISO LEGAL Y DESCARGO DE RESPONSABILIDAD</div><p>La tarifa de consultoria del Protocolo G.A.A.P. corresponde exclusivamente al diseño estrategico, produccion y optimizacion del sistema. Toda inversion en pauta publicitaria (Ads) es independiente y sera cubierta por el presupuesto del cliente. Las sesiones mensuales de registro audiovisual cubren traslados unicamente dentro de Lima Metropolitana. Producciones fuera de este limite requieren cobertura independiente de costos logisticos y viaticos. Los resultados comerciales mostrados representan hitos logrados bajo ejecucion rigurosa y no constituyen promesa o garantia de facturacion o cierre de contratos fijos. El exito depende de multiples variables operativas, logisticas y de mercado ajenas a nuestro control.</p></div></footer>
